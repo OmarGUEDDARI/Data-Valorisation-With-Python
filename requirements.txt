@@ -3,3 +3,6 @@ streamlit==0.64.0
 numpy==1.19.5
 scikit-learn==0.24.2
 numpy==1.19.5
+pyspark==3.1.2
+google-api-python-client==2.20.0
+mysql-connector==2.2.9
