@@ -26,8 +26,8 @@ def youtube_extraction(url):
       #while video_response :  
         for item in video_response['items']:
             comment = item['snippet']['topLevelComment']['snippet']['textDisplay']
-            comments = comments.append(pandas.DataFrame(data=comment,inplace=True,columns=['comment'])
-            print(comment)
+            comments = comments.append(pandas.DataFrame(data=comment,inplace=True,columns=['comment']))
+            streamlit.write(comment)
             iterator+=1
     return comments 
 streamlit.button('Hi There Welcome to This App about Data Science Click on this Button to Start!!')
