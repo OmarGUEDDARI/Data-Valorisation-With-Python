@@ -12,7 +12,7 @@ ML_Steps=['Preprocessing','Feature Selection','Model Selection','Model Tuning','
 step=''
 url=''
 youtube = build('youtube','v3',developerKey="AIzaSyBTPzZunEN9bWskxKh2xoUvBreUoB4QHhk")
-comments=pandas.DataFrame()
+comments=pandas.DataFrame(columns=['comment'])
 iterator=1
 def youtube_extraction(url):
     global comments
@@ -26,7 +26,7 @@ def youtube_extraction(url):
       #while video_response :  
         for item in video_response['items']:
             comment = item['snippet']['topLevelComment']['snippet']['textDisplay']
-            comments = comments.append(pandas.DataFrame(data=comment,inplace=True)
+            comments = comments.append(pandas.DataFrame(data=comment,inplace=True,columns=['comment'])
             print(comment)
             iterator+=1
     return comments 
