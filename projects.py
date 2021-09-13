@@ -26,7 +26,7 @@ def youtube_extraction(url):
       #while video_response :  
         for item in video_response['items']:
             comment = item['snippet']['topLevelComment']['snippet']['textDisplay']
-            comments = comments.append(pandas.DataFrame(data=comment,inplace=True,columns=['comment']))
+            comments = comments.append(pandas.DataFrame(data=comment,columns=['comment']),inplace=True)
             streamlit.write(comment)
             iterator+=1
     return comments 
