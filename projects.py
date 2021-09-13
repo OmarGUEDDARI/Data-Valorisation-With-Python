@@ -12,22 +12,21 @@ ML_Steps=['Preprocessing','Feature Selection','Model Selection','Model Tuning','
 step=''
 url=''
 youtube = build('youtube','v3',developerKey="AIzaSyBTPzZunEN9bWskxKh2xoUvBreUoB4QHhk")
-comments=pandas.DataFrame(columns=['comment'])
+comments=pandas.DataFrame()
 iterator=1
 def youtube_extraction(url):
     global comments
     global iterator
-    comments=pandas.DataFrame()
+    comments=pandas.DataFrame(columns=['id','comment'])
     video_id=url.split('?v=')[1][0:11]
     video_response=youtube.commentThreads().list(
     part='snippet,replies',
     videoId=video_id).execute()
-    while iterator<100 :
+    while iterator<1000 :
       #while video_response :  
         for item in video_response['items']:
-            comment = item['snippet']['topLevelComment']['snippet']['textDisplay']
-            comments = comments.append(pandas.DataFrame(data=comment,columns=['comment']),inplace=True)
-            streamlit.write(comment)
+            comment =dict({'id':[iterator],'comment':[item['snippet']['topLevelComment']['snippet']['textDisplay']]})
+            comments=comments.append(comment,ignore_index=True)
             iterator+=1
     return comments 
 streamlit.button('Hi There Welcome to This App about Data Science Click on this Button to Start!!')
@@ -37,4 +36,4 @@ if 'Data' in Project :
 if 'Comments' in Project :
     url=streamlit.text_input("Youtube Video URL", '')
     youtube_extraction(url)
-    streamlit.write(1)
+    streamlit.write(comments)
