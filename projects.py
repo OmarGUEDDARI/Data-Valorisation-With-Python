@@ -3,6 +3,7 @@ import numpy
 import streamlit
 import mysql.connector
 import pyspark
+import sklearn
 from pyspark import SparkContext
 from apiclient.discovery import build
 connexion=mysql.connector.connect(user='sql11436700', database='sql11436700',password='rPVRabqddG',port='3306',host='sql11.freesqldatabase.com')
@@ -10,15 +11,13 @@ Projects=dict({'Project_Name':['Data Science','Youtube Comments','Object Detecti
 ML_Steps=['Preprocessing','Feature Selection','Model Selection','Model Tuning','Deployment']
 step=''
 url=''
-youtube = build('youtube','v3',
-                developerKey="AIzaSyBTPzZunEN9bWskxKh2xoUvBreUoB4QHhk")
-comments=''
+youtube = build('youtube','v3',developerKey="AIzaSyBTPzZunEN9bWskxKh2xoUvBreUoB4QHhk")
+comments=pandas.DataFrame()
 iterator=1
 def youtube_extraction(url):
     global comments
     global iterator
-    sc = SparkContext()
-    comments=sc.emptyRDD()
+    comments=pandas.DataFrame()
     video_id=url.split('?v=')[1][0:11]
     video_response=youtube.commentThreads().list(
     part='snippet,replies',
@@ -27,11 +26,10 @@ def youtube_extraction(url):
       #while video_response :  
         for item in video_response['items']:
             comment = item['snippet']['topLevelComment']['snippet']['textDisplay']
-            comments = comments.union(sc.parallelize(comment))
+            comments = comments.append(pandas.DataFrame(data=comment,inplace=True)
             print(comment)
             iterator+=1
     return comments 
-    sc.stop()
 streamlit.button('Hi There Welcome to This App about Data Science Click on this Button to Start!!')
 Project=streamlit.selectbox('Projects',options=Projects['Project_Name'])
 if 'Data' in Project :
