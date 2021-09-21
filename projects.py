@@ -58,10 +58,30 @@ def youtube_sentiment_viz(Sentiment):
         shadow=True, startangle=90)
     streamlit.pyplot(fig1)
     return Feelings ,Feel_viz
-streamlit.title('Welcome to This App about Data Science Click Choose from the menu below!!')
+def steps_description(step):
+    if 'Preprocessing' in step :
+        streamlit.title('Standardization')
+        streamlit.write('Some Machine Learning algorithms , are sensitive to input values scales , by using Mean Removal and Variance Scaling , Feature importance can be put to adequate standard')
+        streamlit.title('Encoding Categorical Features')
+        streamlit.write('Changing variable type from text to numeric , it can be done using OneHotEncoder method or a specific built in function')
+        streamlit.title('Discretization')
+        streamlit.write('Changing continuous variables into discrete ones with defined values')
+        streamlit.title('Imputation of missing values')
+        streamlit.write('it can be done in a simple way using the mean of variable values , or in a more sofisticated way  using k-means for example of the k neighbors to the missing value')
+        streamlit.write('marking the imputed values can be added in training ML models for quality purpose')
+    if 'Feature' in step :
+        streamlit.title('PCA')
+        streamlit.write('For memory purpose in some projects , dimension reduction can be useful')
+        streamlit.write('PCA stands for Principal Component Analysis it tends to decompose a multivariate dataset into components that explains the major part of the variance.')
+    if 'Model Selection' in step:
+        streamlit.title('Data Exploration')
+        streamlit.write('Either it\'s a regression or a classification model , a data exploration is a necessary step , it can be achieved with pandas-profiling library for example ')
+        
+streamlit.title('Welcome to This App about Data Science Choose from the menu below!!')
 Project=streamlit.selectbox('Projects',options=Projects['Project_Name'])
 if 'Data' in Project :
-    step=streamlit.radio(label='Steps',options=ML_Steps)
+    step=streamlit.sidebar.radio(label='Steps',options=ML_Steps)
+    steps_description(step)
 if 'Comments' in Project :
     url=streamlit.text_input("Youtube Video URL", '')
     if len(url)==0 or "https://www.youtube.com/watch?v=" not in url:
