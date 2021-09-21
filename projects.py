@@ -58,7 +58,7 @@ def youtube_sentiment_viz(Sentiment):
         shadow=True, startangle=90)
     streamlit.pyplot(fig1)
     return Feelings ,Feel_viz
-streamlit.button('Hi There Welcome to This App about Data Science Click on this Button to Start!!')
+streamlit.title('Welcome to This App about Data Science Click Choose from the menu below!!')
 Project=streamlit.selectbox('Projects',options=Projects['Project_Name'])
 if 'Data' in Project :
     step=streamlit.radio(label='Steps',options=ML_Steps)
