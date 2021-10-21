@@ -12,7 +12,7 @@ import re
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import matplotlib.pyplot as plt
 #connexion=mysql.connector.connect(user='sql11436700', database='sql11436700',password='rPVRabqddG',port='3306',host='sql11.freesqldatabase.com')
-Projects=dict({'Project_Name':['Data Science','Youtube Comments','Object Detection'] ,'Tags' : ['Discovery','NLP','DL']})
+Projects=dict({'Project_Name':['Data Science','Youtube Comments'] ,'Tags' : ['Discovery','NLP','DL']})
 ML_Steps=['Preprocessing','Feature Selection','Model Selection','Model Tuning','Deployment']
 step=''
 url=''
