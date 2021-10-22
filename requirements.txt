@@ -9,3 +9,4 @@ mysql-connector==2.2.9
 nltk==3.4.5
 emoji==1.4.2
 matplotlib==3.3.3
+graphviz==0.16
